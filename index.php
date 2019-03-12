@@ -15,10 +15,10 @@ include('functions.php');
 <div class="container">	
 	<h2>Google Maps Geocode Address with PHP</h2>	
 	<?php
-	if($_POST) { 
+	if ($_POST) { 
 		// get geocode address details
 		$geocodeData = getGeocodeData($_POST['searchAddress']); 
-		if($geocodeData) {         
+		if ($geocodeData) {         
 			$latitude = $geocodeData[0];
 			$longitude = $geocodeData[1];
 			$address = $geocodeData[2];                     
@@ -30,23 +30,23 @@ include('functions.php');
 		<script type="text/javascript">
 			// Initialize the map
 			function init_map() {
-				//Properties for the map
-				var options = {
-					zoom: 14, //Size map
-					center: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>),
-					mapTypeId: google.maps.MapTypeId.ROADMAP
-				};
-				//Create the map inside <div> using properties options
-				map = new google.maps.Map($("#gmap")[0], options);
-				//Mark the address with the default icon.
-				marker = new google.maps.Marker({
-					map: map,
-					position: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>)
-				});
-				//String of text or a DOM node to display in the info window.
-				infowindow = new google.maps.InfoWindow({
-					content: "<?php echo $address; ?>"
-				});
+			    //Properties for the map
+			    var options = {
+				zoom: 14, //Size map
+				center: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>),
+				mapTypeId: google.maps.MapTypeId.ROADMAP
+			    };
+			    //Create the map inside <div> using properties options
+			    map = new google.maps.Map($("#gmap")[0], options);
+			    //Mark the address with the default icon.
+			    marker = new google.maps.Marker({
+				map: map,
+				position: new google.maps.LatLng(<?php echo $latitude; ?>, <?php echo $longitude; ?>)
+	    		    });
+			    //String of text or a DOM node to display in the info window.
+			    infowindow = new google.maps.InfoWindow({
+				content: "<?php echo $address; ?>"
+			    });
 				google.maps.event.addListener(marker, "click", function () {
 					infowindow.open(map, marker);
 				});
