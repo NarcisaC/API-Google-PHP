@@ -1,7 +1,6 @@
 <?php 
 // function to geocode address details
-function getGeocodeData($address) 
-{ 
+function getGeocodeData($address) { 
     //Declaration of variables
     $address = urlencode($address);     
     //Call map, create your API_KEY - Geocoding API
